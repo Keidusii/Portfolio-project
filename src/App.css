@@ -1,0 +1,101 @@
+.navbar {
+    border-bottom: 1px solid #c4c4c4;
+    background-image: linear-gradient(white, #363636);
+    font-weight: bolder;
+}
+
+#home {
+    text-align: center;
+}
+
+hr {
+    background-color: #b3b3b3;
+}
+
+.navbar-brand {
+    font-family: 'Black Ops One';
+}
+
+#nav-header {
+    position:relative;
+    left: -70px;
+}
+
+#nav-footer {
+    position:relative;
+    left: -80px;
+}
+
+.main-button {
+    font-weight: bold;
+    border: 2px solid black;
+    padding: 3px 20px;
+    border-radius: 25px;
+}
+
+#carousel {
+    max-width:600px;
+    max-height: 800px;
+}
+
+Card { 
+    height: 100%;
+}
+
+ul > li {
+    text-align: left;
+}
+
+.pc-price {
+    color: #00c932;
+    font-weight: bold;
+}
+
+footer {
+    border-top: 1px solid black;
+    background-image: linear-gradient(white, #363636);
+}
+
+#footer-div {
+    display: inline;
+}
+
+#footer-list li {
+    display:inline;
+    margin-left:1.6rem;
+    
+}
+
+#adviceForm {
+    border: 1px solid black;
+    padding: 3%;
+    border-radius: 25px;
+}
+
+#daysAvailable {
+    display: inline;
+}
+
+@media screen and (max-width: 850px) {
+    #nav-header {
+        position:relative;
+        left: -40px;
+    }
+    
+    #nav-footer {
+        position:relative;
+        left: -50px;
+    }
+}
+
+@media screen and (max-width: 766.98px) {
+    #nav-header {
+        position:relative;
+        left: 0;
+    }
+    
+    #nav-footer {
+        position:relative;
+        left: 0;
+    }
+}
