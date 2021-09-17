@@ -21,7 +21,7 @@ function Footer() {
                                 <a className="nav-link" href="#buildPC">Build a PC</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="./getAdvice.html">Get Advice</a>
+                                <a className="nav-link" href="#getAdvice">Get Advice</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#contactUs">Contact Us</a>
