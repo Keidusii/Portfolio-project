@@ -39,8 +39,8 @@ function JumbotronComponent(props) {
        <div className="container">
             <Jumbotron fluid>
                 <Container fluid>
-                    <h4 className="display-4">Need Help Building A PC?</h4>
-                    <p className="lead">I'm here to help!</p>
+                    <h4 className="display-4 text-center">Need Help Building A PC?</h4>
+                    <p className="lead text-center">I'm here to help!</p>
                     <div className="row container mx-auto" id="carousel">
                         <Carousel
                             activeIndex={activeIndex}
