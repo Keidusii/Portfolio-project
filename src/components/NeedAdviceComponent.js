@@ -18,7 +18,7 @@ class NeedAdvice extends Component {
     }
     render() {
         return (
-            <div className="container" id="needAdvice">
+            <div className="container" id="getAdvice">
                 <div className="text-center">
                     <h1>Get Advice</h1>
                     <h5 className="mt-4">Whether it's by email, phone, or video call, I can help!</h5>

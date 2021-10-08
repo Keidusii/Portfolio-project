@@ -8,6 +8,7 @@ import ContactUs from './ContactUsComponent';
 import Footer from './FooterComponent';
 import { PCPICS } from '../Shared/PcPics';
 import { PCBUILDS } from '../Shared/PcBuilds';
+import { CART } from '../Shared/Cart';
 
 class MainComponent extends Component {
     render() {
@@ -16,7 +17,7 @@ class MainComponent extends Component {
                 <Header />
                 <JumbotronComponent pcPics={PCPICS} />
                 <FindParts />
-                <BuildPc pcBuilds={PCBUILDS}/>
+                <BuildPc pcBuilds={PCBUILDS} cart={CART}/>
                 <NeedAdvice />
                 <ContactUs />
                 <Footer />

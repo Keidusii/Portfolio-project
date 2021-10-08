@@ -4,16 +4,17 @@ import { Jumbotron, Container, Carousel, CarouselItem, CarouselControl, Carousel
 function JumbotronComponent(props) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
+    const pics = props.pcPics;
 
     const next = () => {
         if (animating) return;
-        const nextIndex = activeIndex === props.length - 1 ? 0 : activeIndex + 1;
+        const nextIndex = activeIndex === pics.length - 1 ? 0 : activeIndex + 1;
         setActiveIndex(nextIndex);
     }
 
     const previous = () => {
         if (animating) return;
-        const nextIndex = activeIndex === 0 ? props.length - 1 : activeIndex - 1;
+        const nextIndex = activeIndex === 0 ? pics.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
     }
 
@@ -34,9 +35,8 @@ function JumbotronComponent(props) {
             </CarouselItem>
         );
     });
-    
     return (
-       <div className="container">
+       <div className="container" id="home">
             <Jumbotron fluid>
                 <Container fluid>
                     <h4 className="display-4 text-center">Need Help Building A PC?</h4>
@@ -47,7 +47,7 @@ function JumbotronComponent(props) {
                             next={next}
                             previous={previous}
                         >
-                            <CarouselIndicators items={props.pcPics} activeIndex={activeIndex} onClickHandler={goToIndex} />
+                            <CarouselIndicators items={pics} activeIndex={activeIndex} onClickHandler={goToIndex} />
                             {slides}
                             <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
                             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />

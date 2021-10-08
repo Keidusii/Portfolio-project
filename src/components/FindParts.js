@@ -12,7 +12,7 @@ function FindParts() {
                 </p>
             </div>
             <div className="text-center">
-                <button className="btn main-button btn-light text-nowrap">Find Parts</button>
+                <a href="https://pcpartpicker.com" target="_blank" className="btn main-button btn-light text-nowrap">Find Parts</a>
             </div>
             <hr />
         </div>

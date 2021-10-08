@@ -11,7 +11,9 @@ export const PCBUILDS = [
         ssd: "512GB Intel 660P M.2 NVMe",
         cpuCooler: "RGB CPU Cooler",
         psu: "600W 80 Plus Gold",
-        case: "Rosewill Zircon I ATX Mid Tower"
+        case: "Rosewill Zircon I ATX Mid Tower",
+        altCpus: ["Intel Core i5-11400F", "Intel Core i7-10700K", "Intel Core i9-11900K"],
+        altGpus: ["NVIDIA GeForce RTX 2060 6GB", "EVGA GeForce RTX 3060 12GB", "EVGA GeForce RTX 3080 Ti 12GB"]
     },
     {
         id: 1,
@@ -25,7 +27,9 @@ export const PCBUILDS = [
         ssd: "1 TB",
         cpuCooler: "Wraith Cooler",
         psu: "600W Gold",
-        case: "Skytech Chronos Mini, Black"
+        case: "Skytech Chronos Mini, Black",
+        altCpus: ["AMD Ryzen 5 3600", "AMD Ryzen 7 3700X", "AMD Ryzen 9 5900X"],
+        altGpus: ["NVIDIA GeForce RTX 2060 6GB", "Asus GeForce RTX 3070 8GB", "EVGA GeForce RTX 3090 24GB"]
     },
     {
         id: 2,
@@ -39,6 +43,8 @@ export const PCBUILDS = [
         ssd: "1 TB Gen4 NVMe SSD",
         cpuCooler: "240mm AIO",
         psu: "650W Gold",
-        case: "Skytech Chronos Case, White"
+        case: "Skytech Chronos Case, White",
+        altCpus: ["AMD Ryzen 7 3700X", "AMD Ryzen 7 5800X", "AMD Ryzen 9 3950X"],
+        altGpus: ["NVIDIA GeForce RTX 3070 8 GB GDDR6", "Asus GeForce RTX 3080 10GB", "Asus GeForce RTX 3090 24GB"]
     }
 ]
