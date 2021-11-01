@@ -13,7 +13,9 @@ export const PCBUILDS = [
         psu: "600W 80 Plus Gold",
         case: "Rosewill Zircon I ATX Mid Tower",
         altCpus: ["Intel Core i5-11400F", "Intel Core i7-10700K", "Intel Core i9-11900K"],
-        altGpus: ["NVIDIA GeForce RTX 2060 6GB", "EVGA GeForce RTX 3060 12GB", "EVGA GeForce RTX 3080 Ti 12GB"]
+        altCpuCost: [269.99, 326.14, 544.89],
+        altGpus: ["NVIDIA GeForce RTX 2060 6GB", "EVGA GeForce RTX 3060 12GB", "EVGA GeForce RTX 3080 Ti 12GB"],
+        altGpuCost: [629.99, 794.00, 2077.94]
     },
     {
         id: 1,
@@ -29,7 +31,9 @@ export const PCBUILDS = [
         psu: "600W Gold",
         case: "Skytech Chronos Mini, Black",
         altCpus: ["AMD Ryzen 5 3600", "AMD Ryzen 7 3700X", "AMD Ryzen 9 5900X"],
-        altGpus: ["NVIDIA GeForce RTX 2060 6GB", "Asus GeForce RTX 3070 8GB", "EVGA GeForce RTX 3090 24GB"]
+        altCpuCost: [224.99, 329.99, 559.99],
+        altGpus: ["NVIDIA GeForce RTX 2060 6GB", "Asus GeForce RTX 3070 8GB", "EVGA GeForce RTX 3090 24GB"],
+        altGpuCost: [629.99, 1449.99, 3239.47]
     },
     {
         id: 2,
@@ -45,6 +49,8 @@ export const PCBUILDS = [
         psu: "650W Gold",
         case: "Skytech Chronos Case, White",
         altCpus: ["AMD Ryzen 7 3700X", "AMD Ryzen 7 5800X", "AMD Ryzen 9 3950X"],
-        altGpus: ["NVIDIA GeForce RTX 3070 8 GB GDDR6", "Asus GeForce RTX 3080 10GB", "Asus GeForce RTX 3090 24GB"]
+        altCpuCost: [329.99, 369.00, 741.79],
+        altGpus: ["NVIDIA GeForce RTX 3070 8 GB GDDR6", "Asus GeForce RTX 3080 10GB", "Asus GeForce RTX 3090 24GB"],
+        altGpuCost: [819.99, 1459.99, 3099.99]
     }
 ]

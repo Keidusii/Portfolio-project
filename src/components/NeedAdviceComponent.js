@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
+import {
+    Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label,
+    Input, Toast, ToastHeader, ToastBody
+} from 'reactstrap';
 
 class NeedAdvice extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isModalOpen: false
+            isModalOpen: false,
+            toastOpen: false
         }
 
         this.toggleModal = this.toggleModal.bind(this);
+        this.toggleToast = this.toggleToast.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     toggleModal() {
         this.setState({
             isModalOpen: !this.state.isModalOpen
-        })
+        });
     }
+
+    toggleToast() {
+        this.setState({
+            toastOpen: !this.state.toastOpen
+        });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.toggleModal();
+        this.toggleToast();
+        console.log("Form Submitted");
+    }
+
     render() {
         return (
             <div className="container" id="getAdvice">
@@ -34,21 +54,21 @@ class NeedAdvice extends Component {
                         <h1>Get Advice</h1>
                     </ModalHeader>
                     <ModalBody>
-                        <div class="text-center">
+                        <div className="text-center">
                             <p>Fill out the form below and you will receive an email to confirm an appointment:</p>
                         </div>
-                        <Form id="adviceForm">
+                        <Form id="adviceForm" method="post" onSubmit={this.handleSubmit}>
                             <FormGroup>
-                                <Input type="text" placeholder="First name" />
+                                <Input type="text" placeholder="First name" required />
                             </FormGroup>
                             <FormGroup>
-                                <Input type="text" placeholder="Last name" />
+                                <Input type="text" placeholder="Last name" required />
                             </FormGroup>
-                            <FormGroup class="form-group">
-                                <Input type="email" placeholder="Email Address" />
+                            <FormGroup className="form-group">
+                                <Input type="email" placeholder="Email Address" required />
                             </FormGroup>
-                            <FormGroup class="form-group">
-                                <Label class="font-weight-bold" for="bestContact">Best form of contact:</Label>
+                            <FormGroup className="form-group">
+                                <Label className="font-weight-bold" for="bestContact">Best form of contact:</Label>
                                 <Input type="select" name="contactSelect" id="bestContact">
                                     <option>Choose...</option>
                                     <option>Phone</option>
@@ -58,47 +78,47 @@ class NeedAdvice extends Component {
                             </FormGroup>
                             <legend id="daysAvailable">Days Available:</legend>
                             <FormGroup check id="days">
-                                <FormGroup class="form-check form-check-inline">
+                                <FormGroup className="form-check form-check-inline">
                                     <Label check>
                                         <Input type="radio" name="dayCheck" />{' '}
                                         Monday
                                     </Label>
                                 </FormGroup>
-                                <FormGroup class="form-check form-check-inline">
+                                <FormGroup className="form-check form-check-inline">
                                     <Label check>
                                         <Input type="radio" name="dayCheck" />{' '}
                                         Tuesday
                                     </Label>
                                 </FormGroup>
-                                <FormGroup class="form-check form-check-inline">
+                                <FormGroup className="form-check form-check-inline">
                                     <Label check>
                                         <Input type="radio" name="dayCheck" />{' '}
                                         Wednesday
                                     </Label>
                                 </FormGroup>
-                                <FormGroup class="form-check form-check-inline">
+                                <FormGroup className="form-check form-check-inline">
                                     <Label check>
                                         <Input type="radio" name="dayCheck" />{' '}
                                         Thursday
                                     </Label>
                                 </FormGroup>
-                                <FormGroup class="form-check form-check-inline">
+                                <FormGroup className="form-check form-check-inline">
                                     <Label check>
                                         <Input type="radio" name="dayCheck" />{' '}
                                         Friday
                                     </Label>
                                 </FormGroup>
-                                <FormGroup class="form-check form-check-inline">
+                                <FormGroup className="form-check form-check-inline">
                                     <Label check>
                                         <Input type="radio" name="dayCheck" />{' '}
                                         Saturday
                                     </Label>
                                 </FormGroup>
                             </FormGroup>
-                            <FormGroup class="form-group">
-                                <Label class="font-weight-bold mt-2" for="inputState">Best time to talk:</Label>
+                            <FormGroup className="form-group">
+                                <Label className="font-weight-bold mt-2" for="inputState">Best time to talk:</Label>
                                 <Input type="select" name="timeSelect" id="inputState">
-                                    <option selected>Choose...</option>
+                                    <option>Choose...</option>
                                     <option>9am-10am</option>
                                     <option>10am-11am</option>
                                     <option>11am-12pm</option>
@@ -112,13 +132,23 @@ class NeedAdvice extends Component {
                                 </Input>
                                 <small>All times are Eastern Standard Time</small>
                             </FormGroup>
-                            <FormGroup class="form-group">
-                                <Input type="textarea" placeholder="Additional Comments" />
+                            <FormGroup className="form-group">
+                                <Input type="textarea" placeholder="Additional Comments" required />
                             </FormGroup>
-                            <Button type="submit" class="btn btn-primary">Submit</Button>
+                            <Button type="submit" className="btn btn-primary">
+                                Submit
+                            </Button>
                         </Form>
                     </ModalBody>
                 </Modal>
+                <Toast isOpen={this.state.toastOpen} className="mt-2 mx-auto">
+                    <ToastHeader icon="success" toggle={this.toggleToast}>
+                        Alert
+                    </ToastHeader>
+                    <ToastBody>
+                        Your form has been submitted!
+                    </ToastBody>
+                </Toast>
                 <hr />
             </div>
         );

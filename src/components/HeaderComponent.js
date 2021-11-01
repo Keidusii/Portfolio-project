@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
 import { Link } from 'react-scroll';
 
 class Header extends Component {
@@ -20,7 +20,19 @@ class Header extends Component {
 
     render() {
         const cart = this.props.cart.map(item => {
-            //items pic, name, cost
+            return(
+                <Row>
+                    <Col>
+                        {item.pic}
+                    </Col>
+                    <Col>
+                        {item.name}
+                    </Col>
+                    <Col>
+                        {item.cost}
+                    </Col>
+                </Row>
+            )
         });
 
         return (
