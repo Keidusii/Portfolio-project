@@ -16,28 +16,50 @@ class BuildPc extends Component {
             isCardOneOpen: true,
             isCardTwoOpen: true,
             isCardThreeOpen: true,
+            pcBuilds: pc,
+            pc: "0",
+            cpu: "0",
+            gpu:"0",
+            addedCpuCost: 0,
+            addedGpuCost: 0,
+            totalCost: 0,
             cart: props.cart
         }
 
         this.toggleModal = this.toggleModal.bind(this);
         this.toggleCard = this.toggleCard.bind(this);
+        this.handleCpuChange = this.handleCpuChange.bind(this);
+        this.handleGpuChange = this.handleGpuChange.bind(this);
+        this.handleCostChange = this.handleCostChange.bind(this);
         this.addToCart = this.addToCart.bind(this);
     }
 
     toggleModal(index) {
         if (index === 0) {
             this.setState({
-                isModalOneOpen: !this.state.isModalOneOpen
+                isModalOneOpen: !this.state.isModalOneOpen,
+                pc: index
             });
         }
         else if (index === 1) {
             this.setState({
-                isModalTwoOpen: !this.state.isModalTwoOpen
+                isModalTwoOpen: !this.state.isModalTwoOpen,
+                pc: index
             });
         }
         else {
             this.setState({
-                isModalThreeOpen: !this.state.isModalThreeOpen
+                isModalThreeOpen: !this.state.isModalThreeOpen,
+                pc: index
+            });
+        }
+
+        if ( !this.state.isModalOneOpen && !this.state.isModalTwoOpen && !this.state.isModalThreeOpen ) {
+            this.setState({
+                cpu: "0",
+                gpu: "0"
+            }, () => {
+                this.handleCostChange();
             });
         }
     }
@@ -58,6 +80,34 @@ class BuildPc extends Component {
                 isCardThreeOpen: !this.state.isCardThreeOpen
             });
         }
+    }
+
+    handleCpuChange(event) {
+        let cost = this.state.pcBuilds[this.state.pc].altCpuCost[event.target.value];
+        this.setState({
+            cpu: event.target.value,
+            addedCpuCost: cost
+        }, () => {
+            this.handleCostChange();
+        });
+    }
+
+    handleGpuChange(event) {
+        let cost = this.state.pcBuilds[this.state.pc].altGpuCost[event.target.value];
+        this.setState({
+            gpu: event.target.value,
+            addedGpuCost: cost
+        }, () => {
+            this.handleCostChange();
+        });
+    }
+
+    handleCostChange() {
+        let cost = this.state.pcBuilds[this.state.pc].cost + this.state.addedCpuCost + this.state.addedGpuCost;
+        cost = Math.round(cost * 100) / 100;
+        this.setState({
+            totalCost: cost
+        });
     }
 
     addToCart(item) {
@@ -81,7 +131,7 @@ class BuildPc extends Component {
                         <CardImg width="100%" src={pc[0].src} alt={pc[0].alt} />
                         <CardBody>
                             <h5>PC #{pc[0].id + 1}</h5>
-                            <p className="card-text pc-price">From {pc[0].cost}</p>
+                            <p className="card-text pc-price">From ${pc[0].cost}</p>
                             <ul>
                                 <li>CPU: {pc[0].cpu}</li>
                                 <li>GPU: {pc[0].gpu}</li>
@@ -114,7 +164,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
-                                                    checked
+                                                    value="0"
+                                                    checked={this.state.cpu === "0"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -125,6 +177,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
+                                                    value="1"
+                                                    checked={this.state.cpu === "1"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -135,6 +190,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
+                                                    value="2"
+                                                    checked={this.state.cpu === "2"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -155,7 +213,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
-                                                    checked
+                                                    value="0"
+                                                    checked={this.state.gpu === "0"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -166,6 +226,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
+                                                    value="1"
+                                                    checked={this.state.gpu === "1"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -176,6 +239,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
+                                                    value="2"
+                                                    checked={this.state.gpu === "2"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -188,7 +254,7 @@ class BuildPc extends Component {
                             </Collapse>
                         </ModalBody>
                         <ModalFooter>
-                            <strong className="text-left">Total Cost: {pc[0].cost}</strong>
+                            <strong className="text-left">Total Cost: ${this.state.totalCost}</strong>
                             <Button color="light" className="main-button" onClick={() => { this.toggleModal(0) }}>Close</Button>
                             <Button color="light" className="main-button" onClick={this.addToCart(this)}>Add to Cart</Button>
                         </ModalFooter>
@@ -198,7 +264,7 @@ class BuildPc extends Component {
                         <CardImg width="100%" src={pc[1].src} alt={pc[1].alt} />
                         <CardBody>
                             <h5>PC #{pc[1].id + 1}</h5>
-                            <p className="card-text pc-price">From {pc[1].cost}</p>
+                            <p className="card-text pc-price">From ${pc[1].cost}</p>
                             <ul>
                                 <li>CPU: {pc[1].cpu}</li>
                                 <li>GPU: {pc[1].gpu}</li>
@@ -231,7 +297,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
-                                                    checked
+                                                    value="0"
+                                                    checked={this.state.cpu === "0"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -242,6 +310,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
+                                                    value="1"
+                                                    checked={this.state.cpu === "1"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -252,6 +323,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
+                                                    value="2"
+                                                    checked={this.state.cpu === "2"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -272,7 +346,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
-                                                    checked
+                                                    value="0"
+                                                    checked={this.state.gpu === "0"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -283,6 +359,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
+                                                    value="1"
+                                                    checked={this.state.gpu === "1"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -293,6 +372,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
+                                                    value="2"
+                                                    checked={this.state.gpu === "2"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -305,7 +387,7 @@ class BuildPc extends Component {
                             </Collapse>
                         </ModalBody>
                         <ModalFooter>
-                            <strong className="text-left">Total Cost: {pc[1].cost}</strong>
+                            <strong className="text-left">Total Cost: ${this.state.totalCost}</strong>
                             <Button color="light" className="main-button" onClick={() => { this.toggleModal(1) }}>Close</Button>
                             <Button color="light" className="main-button" onClick={this.addToCart(this)}>Add to Cart</Button>
                         </ModalFooter>
@@ -315,7 +397,7 @@ class BuildPc extends Component {
                         <CardImg width="100%" src={pc[2].src} alt={pc[2].alt} />
                         <CardBody>
                             <h5>PC #{pc[2].id + 1}</h5>
-                            <p className="card-text pc-price">From {pc[2].cost}</p>
+                            <p className="card-text pc-price">From ${pc[2].cost}</p>
                             <ul>
                                 <li>CPU: {pc[2].cpu}</li>
                                 <li>GPU: {pc[2].gpu}</li>
@@ -348,7 +430,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
-                                                    checked
+                                                    value="0"
+                                                    checked={this.state.cpu === "0"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -359,6 +443,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
+                                                    value="1"
+                                                    checked={this.state.cpu === "1"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -369,6 +456,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio1"
                                                     type="radio"
+                                                    value="2"
+                                                    checked={this.state.cpu === "2"}
+                                                    onChange={this.handleCpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -389,7 +479,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
-                                                    checked
+                                                    value="0"
+                                                    checked={this.state.gpu === "0"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -400,6 +492,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
+                                                    value="1"
+                                                    checked={this.state.gpu === "1"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -410,6 +505,9 @@ class BuildPc extends Component {
                                                 <Input
                                                     name="radio2"
                                                     type="radio"
+                                                    value="2"
+                                                    checked={this.state.gpu === "2"}
+                                                    onChange={this.handleGpuChange}
                                                 />
                                                 {' '}
                                                 <Label check>
@@ -422,7 +520,7 @@ class BuildPc extends Component {
                             </Collapse>
                         </ModalBody>
                         <ModalFooter>
-                            <strong className="text-left">Total Cost: {pc[2].cost}</strong>
+                            <strong className="text-left">Total Cost: ${this.state.totalCost}</strong>
                             <Button color="light" className="main-button" onClick={() => { this.toggleModal(2) }}>Close</Button>
                             <Button color="light" className="main-button" onClick={this.addToCart(this)}>Add to Cart</Button>
                         </ModalFooter>

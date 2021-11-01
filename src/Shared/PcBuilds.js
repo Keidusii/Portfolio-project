@@ -3,7 +3,7 @@ export const PCBUILDS = [
         id: 0,
         src: "./assets/images/pc-1.jpg",
         alt: "PC #1",
-        cost: "$1200",
+        cost: 1200,
         cpu: "Intel Core i5 11th Gen 11400F",
         gpu: "NVIDIA GeForce RTX 2060 6GB",
         motherboard: "B560M mATX (WIFI)",
@@ -13,15 +13,15 @@ export const PCBUILDS = [
         psu: "600W 80 Plus Gold",
         case: "Rosewill Zircon I ATX Mid Tower",
         altCpus: ["Intel Core i5-11400F", "Intel Core i7-10700K", "Intel Core i9-11900K"],
-        altCpuCost: [269.99, 326.14, 544.89],
+        altCpuCost: [0, 326.14, 544.89],
         altGpus: ["NVIDIA GeForce RTX 2060 6GB", "EVGA GeForce RTX 3060 12GB", "EVGA GeForce RTX 3080 Ti 12GB"],
-        altGpuCost: [629.99, 794.00, 2077.94]
+        altGpuCost: [0, 794.00, 2077.94]
     },
     {
         id: 1,
         src: "./assets/images/pc-2.jpg",
         alt: "PC #2",
-        cost: "$1400",
+        cost: 1400,
         cpu: "AMD Ryzen 5 3600",
         gpu: "NVIDIA GeForce RTX 2060 6 GB",
         motherboard: "GIGABYTE B450M DS3H",
@@ -31,15 +31,15 @@ export const PCBUILDS = [
         psu: "600W Gold",
         case: "Skytech Chronos Mini, Black",
         altCpus: ["AMD Ryzen 5 3600", "AMD Ryzen 7 3700X", "AMD Ryzen 9 5900X"],
-        altCpuCost: [224.99, 329.99, 559.99],
+        altCpuCost: [0, 329.99, 559.99],
         altGpus: ["NVIDIA GeForce RTX 2060 6GB", "Asus GeForce RTX 3070 8GB", "EVGA GeForce RTX 3090 24GB"],
-        altGpuCost: [629.99, 1449.99, 3239.47]
+        altGpuCost: [0, 1449.99, 3239.47]
     },
     {
         id: 2,
         src: "./assets/images/pc-3.jpg",
         alt: "PC #3",
-        cost: "$2300",
+        cost: 2300,
         cpu: "AMD Ryzen 7 3700X",
         gpu: "NVIDIA GeForce RTX 3070 8 GB GDDR6",
         motherboard: "ASRock B550M",
@@ -49,8 +49,8 @@ export const PCBUILDS = [
         psu: "650W Gold",
         case: "Skytech Chronos Case, White",
         altCpus: ["AMD Ryzen 7 3700X", "AMD Ryzen 7 5800X", "AMD Ryzen 9 3950X"],
-        altCpuCost: [329.99, 369.00, 741.79],
+        altCpuCost: [0, 369.00, 741.79],
         altGpus: ["NVIDIA GeForce RTX 3070 8 GB GDDR6", "Asus GeForce RTX 3080 10GB", "Asus GeForce RTX 3090 24GB"],
-        altGpuCost: [819.99, 1459.99, 3099.99]
+        altGpuCost: [0, 1459.99, 3099.99]
     }
 ]
