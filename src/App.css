@@ -1,4 +1,3 @@
-
 .navbar {
     border-bottom: 1px solid #c4c4c4;
     background-image: linear-gradient(white, #363636);
@@ -35,6 +34,7 @@ hr {
 }
 
 #carousel {
+    width: 100%;
     max-width:600px;
     max-height: 800px;
 }

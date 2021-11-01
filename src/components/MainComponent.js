@@ -14,7 +14,7 @@ class MainComponent extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header cart={CART}/>
                 <JumbotronComponent pcPics={PCPICS} />
                 <FindParts />
                 <BuildPc pcBuilds={PCBUILDS} cart={CART}/>

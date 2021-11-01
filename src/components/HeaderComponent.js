@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from "react-scroll";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Link } from 'react-scroll';
 
 class Header extends Component {
     constructor(props) {
@@ -7,9 +8,21 @@ class Header extends Component {
         this.state = {
             isModalOpen: false
         }
+
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+
+    toggleModal() {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
     }
 
     render() {
+        const cart = this.props.cart.map(item => {
+            //items pic, name, cost
+        });
+
         return (
             <nav className="navbar navbar-light bg-light sticky-top navbar-expand-md">
                 <div className="container-fluid">
@@ -20,7 +33,7 @@ class Header extends Component {
                     <div className="collapse navbar-collapse" id="navbarToggler">
                         <ul id="nav-header" className="navbar-nav mx-auto mb-1 mb-lg-0">
                             <li className="nav-item">
-                                <Link 
+                                <Link
                                     className="nav-link nav-scroll"
                                     activeClass="active"
                                     to="home"
@@ -33,7 +46,7 @@ class Header extends Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link 
+                                <Link
                                     className="nav-link nav-scroll"
                                     activeClass="active"
                                     to="findParts"
@@ -46,7 +59,7 @@ class Header extends Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link 
+                                <Link
                                     className="nav-link nav-scroll"
                                     activeClass="active"
                                     to="buildPC"
@@ -59,7 +72,7 @@ class Header extends Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link 
+                                <Link
                                     className="nav-link nav-scroll"
                                     activeClass="active"
                                     to="getAdvice"
@@ -72,7 +85,7 @@ class Header extends Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                            <Link 
+                                <Link
                                     className="nav-link nav-scroll"
                                     activeClass="active"
                                     to="contactUs"
@@ -85,7 +98,25 @@ class Header extends Component {
                                 </Link>
                             </li>
                         </ul>
-                        <i className="fas fa-shopping-cart fa-lg my-auto"></i>
+                        <Button onClick={this.toggleModal}>
+                            <i className="fas fa-shopping-cart fa-lg my-auto" />
+                        </Button>
+                        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                            <ModalHeader toggle={this.toggleModal}>
+                                Cart
+                            </ModalHeader>
+                            <ModalBody>
+                                {cart}
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="light" className="main-button" onClick={() => {this.toggleModal()}}>
+                                    Close
+                                </Button>
+                                <Button color="primary" className="main-button">
+                                    Check Out
+                                </Button>
+                            </ModalFooter>
+                        </Modal>
                     </div>
                 </div>
             </nav>

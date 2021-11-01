@@ -30,7 +30,7 @@ function JumbotronComponent(props) {
                 onExited={() => setAnimating(false)}
                 key={pic.id}
             >
-                <img src={pic.src} alt={pic.alt} />
+                <img className="w-100" src={pic.src} alt={pic.alt} />
                 <CarouselCaption captionText={pic.caption} captionHeader={pic.caption} />
             </CarouselItem>
         );
