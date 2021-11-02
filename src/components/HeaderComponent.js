@@ -6,7 +6,8 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isModalOpen: false
+            isModalOpen: false,
+            total: 0
         }
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -21,16 +22,19 @@ class Header extends Component {
     render() {
         const cart = this.props.cart.map(item => {
             return(
-                <Row>
+                <Row key={item.id} className="mt-2">
                     <Col>
-                        {item.pic}
+                        <img src={item.pic} alt={item.id} height="95px" width="95px"/>
                     </Col>
                     <Col>
-                        {item.name}
+                        <strong>{item.name}</strong> <br />
+                        {item.cpu} <br />
+                        {item.gpu}
                     </Col>
                     <Col>
-                        {item.cost}
+                        <strong>${item.totalCost}</strong>
                     </Col>
+                    <hr />
                 </Row>
             )
         });

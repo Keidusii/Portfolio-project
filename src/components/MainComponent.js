@@ -11,13 +11,31 @@ import { PCBUILDS } from '../Shared/PcBuilds';
 import { CART } from '../Shared/Cart';
 
 class MainComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            shoppingCart: CART
+        };
+        
+        this.handleCartChange = this.handleCartChange.bind(this);
+    }
+
+    handleCartChange(cart) {
+        this.setState({
+            shoppingCart: cart
+        }, () => {
+            console.log(this.state.shoppingCart);
+        })
+    }
+
     render() {
+        const cart = this.state.shoppingCart;
         return (
             <div>
-                <Header cart={CART}/>
+                <Header cart={cart}/>
                 <JumbotronComponent pcPics={PCPICS} />
                 <FindParts />
-                <BuildPc pcBuilds={PCBUILDS} cart={CART}/>
+                <BuildPc pcBuilds={PCBUILDS} cart={cart} onCartChange={this.handleCartChange} />
                 <NeedAdvice />
                 <ContactUs />
                 <Footer />

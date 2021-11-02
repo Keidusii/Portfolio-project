@@ -1,3 +1,3 @@
-export const CART = [
-
+export let CART = [
+    
 ];

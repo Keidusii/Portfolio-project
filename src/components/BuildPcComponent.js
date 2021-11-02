@@ -22,8 +22,7 @@ class BuildPc extends Component {
             gpu:"0",
             addedCpuCost: 0,
             addedGpuCost: 0,
-            totalCost: 0,
-            cart: props.cart
+            totalCost: 0
         }
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -31,6 +30,8 @@ class BuildPc extends Component {
         this.handleCpuChange = this.handleCpuChange.bind(this);
         this.handleGpuChange = this.handleGpuChange.bind(this);
         this.handleCostChange = this.handleCostChange.bind(this);
+        this.buyNow = this.buyNow.bind(this);
+        this.handleCartChange = this.handleCartChange.bind(this);
         this.addToCart = this.addToCart.bind(this);
     }
 
@@ -110,14 +111,31 @@ class BuildPc extends Component {
         });
     }
 
-    addToCart(item) {
-        // this.setState({
-        //     cart: [...this.state.cart, {
-        //         id: '',
-        //         addedCost: '',
-        //         addedItems: ''
-        //     }]
-        // });
+    buyNow(index) {
+        let cost = this.state.pcBuilds[index].cost
+        cost = Math.round(cost * 100) / 100;
+        this.setState({
+            totalCost: cost,
+            pc: index
+        }, () => {
+            this.addToCart()
+        });
+    }
+
+    handleCartChange(cart) {
+        this.props.onCartChange(cart);
+    }
+
+    addToCart() {
+        let cart = [...this.props.cart, {
+            id: this.state.pc,
+            name: this.state.pcBuilds[this.state.pc].alt,
+            pic: this.state.pcBuilds[this.state.pc].src,
+            totalCost: this.state.totalCost,
+            cpu: this.state.pcBuilds[this.state.pc].altCpus[this.state.cpu],
+            gpu: this.state.pcBuilds[this.state.pc].altGpus[this.state.gpu]
+        }]
+        this.handleCartChange(cart);
     }
 
     render() {
@@ -145,7 +163,7 @@ class BuildPc extends Component {
                         </CardBody>
                         <CardFooter>
                             <Button color="light" className="col text-nowrap main-button mb-2" onClick={() => { this.toggleModal(0) }}>Customize</Button>
-                            <Button color="light" className="col main-button" onClick={this.addToCart()}>Buy Now</Button>
+                            <Button color="light" className="col main-button" onClick={() => {this.buyNow(0)}}>Buy Now</Button>
                         </CardFooter>
                     </Card>
 
@@ -256,7 +274,7 @@ class BuildPc extends Component {
                         <ModalFooter>
                             <strong className="text-left">Total Cost: ${this.state.totalCost}</strong>
                             <Button color="light" className="main-button" onClick={() => { this.toggleModal(0) }}>Close</Button>
-                            <Button color="light" className="main-button" onClick={this.addToCart(this)}>Add to Cart</Button>
+                            <Button color="light" className="main-button" onClick={() => {this.addToCart()}}>Add to Cart</Button>
                         </ModalFooter>
                     </Modal>
 
@@ -278,7 +296,7 @@ class BuildPc extends Component {
                         </CardBody>
                         <CardFooter>
                             <Button color="light" className="col text-nowrap main-button mb-2" onClick={() => { this.toggleModal(1) }}>Customize</Button>
-                            <Button color="light" className="col main-button" onClick={this.addToCart()}>Buy Now</Button>
+                            <Button color="light" className="col main-button" onClick={() => {this.buyNow(1)}}>Buy Now</Button>
                         </CardFooter>
                     </Card>
 
@@ -389,7 +407,7 @@ class BuildPc extends Component {
                         <ModalFooter>
                             <strong className="text-left">Total Cost: ${this.state.totalCost}</strong>
                             <Button color="light" className="main-button" onClick={() => { this.toggleModal(1) }}>Close</Button>
-                            <Button color="light" className="main-button" onClick={this.addToCart(this)}>Add to Cart</Button>
+                            <Button color="light" className="main-button" onClick={() => {this.addToCart()}}>Add to Cart</Button>
                         </ModalFooter>
                     </Modal>
 
@@ -411,7 +429,7 @@ class BuildPc extends Component {
                         </CardBody>
                         <CardFooter>
                             <Button color="light" className="col text-nowrap main-button mb-2" onClick={() => { this.toggleModal(2) }}>Customize</Button>
-                            <Button color="light" className="col main-button" onClick={this.addToCart()}>Buy Now</Button>
+                            <Button color="light" className="col main-button" onClick={() => {this.buyNow(2)}}>Buy Now</Button>
                         </CardFooter>
                     </Card>
 
@@ -522,7 +540,7 @@ class BuildPc extends Component {
                         <ModalFooter>
                             <strong className="text-left">Total Cost: ${this.state.totalCost}</strong>
                             <Button color="light" className="main-button" onClick={() => { this.toggleModal(2) }}>Close</Button>
-                            <Button color="light" className="main-button" onClick={this.addToCart(this)}>Add to Cart</Button>
+                            <Button color="light" className="main-button" onClick={() => {this.addToCart()}}>Add to Cart</Button>
                         </ModalFooter>
                     </Modal>
                 </CardGroup>
