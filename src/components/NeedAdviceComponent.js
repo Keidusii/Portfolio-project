@@ -60,12 +60,15 @@ class NeedAdvice extends Component {
                         <Form id="adviceForm" method="post" onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Input type="text" placeholder="First name" required />
+                                <small className="text-danger">Required</small>
                             </FormGroup>
                             <FormGroup>
                                 <Input type="text" placeholder="Last name" required />
+                                <small className="text-danger">Required</small>
                             </FormGroup>
                             <FormGroup className="form-group">
                                 <Input type="email" placeholder="Email Address" required />
+                                <small className="text-danger">Required</small>
                             </FormGroup>
                             <FormGroup className="form-group">
                                 <Label className="font-weight-bold" for="bestContact">Best form of contact:</Label>
@@ -134,6 +137,7 @@ class NeedAdvice extends Component {
                             </FormGroup>
                             <FormGroup className="form-group">
                                 <Input type="textarea" placeholder="Additional Comments" required />
+                                <small className="text-danger">Required</small>
                             </FormGroup>
                             <Button type="submit" className="btn btn-primary">
                                 Submit
