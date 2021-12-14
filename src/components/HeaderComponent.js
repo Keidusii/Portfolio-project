@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
 import { Link } from 'react-scroll';
+import Badge from '@mui/material/Badge';
 
 class Header extends Component {
     constructor(props) {
@@ -115,7 +116,9 @@ class Header extends Component {
                             </li>
                         </ul>
                         <Button onClick={this.toggleModal}>
-                            <i className="fas fa-shopping-cart fa-lg my-auto" />
+                            <Badge badgeContent={this.props.cart.length} color="error">
+                                <i className="fas fa-shopping-cart fa-lg my-auto" />
+                            </Badge>
                         </Button>
                         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                             <ModalHeader toggle={this.toggleModal}>
