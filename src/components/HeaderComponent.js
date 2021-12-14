@@ -125,6 +125,7 @@ class Header extends Component {
                                 Cart
                             </ModalHeader>
                             <ModalBody>
+                                {cart.length === 0 && <h6 className="text-center">Your Cart is Empty</h6>}
                                 {cart}
                             </ModalBody>
                             <ModalFooter>
