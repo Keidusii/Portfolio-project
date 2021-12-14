@@ -9,6 +9,8 @@ import Footer from './FooterComponent';
 import { PCPICS } from '../Shared/PcPics';
 import { PCBUILDS } from '../Shared/PcBuilds';
 import { CART } from '../Shared/Cart';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class MainComponent extends Component {
     constructor(props) {
@@ -19,12 +21,19 @@ class MainComponent extends Component {
         
         this.handleCartChange = this.handleCartChange.bind(this);
     }
-
+    
     handleCartChange(cart) {
         this.setState({
             shoppingCart: cart
         }, () => {
-            console.log(this.state.shoppingCart);
+            toast.success(`Added to Cart!`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+            });
         })
     }
 
@@ -32,6 +41,18 @@ class MainComponent extends Component {
         const cart = this.state.shoppingCart;
         return (
             <div>
+                <ToastContainer
+                    position="bottom-left"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover={false}
+                    theme='dark'
+                />
                 <Header cart={cart}/>
                 <JumbotronComponent pcPics={PCPICS} />
                 <FindParts />

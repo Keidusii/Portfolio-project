@@ -1,3 +1,8 @@
+#toast {
+    z-index: 100;
+    position: absolute;
+}
+
 .navbar {
     border-bottom: 1px solid #c4c4c4;
     background-image: linear-gradient(white, #363636);
