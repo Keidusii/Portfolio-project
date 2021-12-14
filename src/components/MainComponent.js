@@ -33,6 +33,7 @@ class MainComponent extends Component {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: true,
+                progress: undefined,
             });
         })
     }
