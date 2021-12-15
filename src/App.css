@@ -17,6 +17,12 @@ hr {
     background-color: #6b6b6b;
 }
 
+.cartDivider {
+    background-color: #6b6b6b;
+    width: 100%;
+    margin: 0 auto;
+}
+
 .navbar-brand {
     font-family: 'Black Ops One';
 }

@@ -8,7 +8,6 @@ class Header extends Component {
         super(props);
         this.state = {
             isModalOpen: false,
-            total: 0
         }
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -21,11 +20,14 @@ class Header extends Component {
     }
 
     render() {
+        let totalCost = 0;
+
         const cart = this.props.cart.map(item => {
-            return(
-                <Row key={item.id} className="mt-2">
+            totalCost += Math.ceil(item.totalCost * 100) / 100;;
+            return (
+                <Row key={item.id} className="mb-2">
                     <Col>
-                        <img src={item.pic} alt={item.id} height="95px" width="95px"/>
+                        <img src={item.pic} alt={item.id} height="95px" width="95px" />
                     </Col>
                     <Col>
                         <strong>{item.name}</strong> <br />
@@ -35,7 +37,6 @@ class Header extends Component {
                     <Col>
                         <strong>${item.totalCost}</strong>
                     </Col>
-                    <hr />
                 </Row>
             )
         });
@@ -124,15 +125,18 @@ class Header extends Component {
                             <ModalHeader toggle={this.toggleModal}>
                                 Cart
                             </ModalHeader>
+                            <hr className="cartDivider" />
                             <ModalBody>
                                 {cart.length === 0 && <h6 className="text-center">Your Cart is Empty</h6>}
                                 {cart}
                             </ModalBody>
+                            <hr className="cartDivider" />
                             <ModalFooter>
-                                <Button color="light" className="main-button" onClick={() => {this.toggleModal()}}>
+                                <strong>Total Cost: ${totalCost} </strong>
+                                <Button color="light" className="main-button" onClick={() => { this.toggleModal() }}>
                                     Close
                                 </Button>
-                                <Button color="primary" className="main-button">
+                                <Button color="primary" className="main-button" id="checkOutBtn">
                                     Check Out
                                 </Button>
                             </ModalFooter>
