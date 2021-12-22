@@ -69,5 +69,5 @@ class MainComponent extends Component {
 export default MainComponent;
 
 // TO DO LIST
-// 1. Add remove from cart option
+// 1. Add onclick to remove from cart option
 // 2. Cart Checkout tooltip

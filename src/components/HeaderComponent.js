@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
 import { Link } from 'react-scroll';
 import Badge from '@mui/material/Badge';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
     constructor(props) {
@@ -25,17 +27,20 @@ class Header extends Component {
         const cart = this.props.cart.map(item => {
             totalCost += Math.ceil(item.totalCost * 100) / 100;;
             return (
-                <Row key={item.id} className="mb-2">
-                    <Col>
+                <Row key={item.id} className="d-flex flex-row mb-2">
+                    <Col xs="3">
                         <img src={item.pic} alt={item.id} height="95px" width="95px" />
                     </Col>
-                    <Col>
+                    <Col xs="5">
                         <strong>{item.name}</strong> <br />
                         {item.cpu} <br />
                         {item.gpu}
                     </Col>
-                    <Col>
+                    <Col xs="2"className="d-flex justify-content-center align-items-center">
                         <strong>${item.totalCost}</strong>
+                    </Col>
+                    <Col xs="2" className="d-flex justify-content-center align-items-center">
+                        <FontAwesomeIcon icon={faTimes} color='red'/>
                     </Col>
                 </Row>
             )
