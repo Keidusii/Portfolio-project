@@ -20,6 +20,7 @@ class MainComponent extends Component {
         };
         
         this.handleCartChange = this.handleCartChange.bind(this);
+        this.updateCart = this.updateCart.bind(this);
     }
     
     handleCartChange(cart) {
@@ -38,8 +39,13 @@ class MainComponent extends Component {
         })
     }
 
+    updateCart(cartItem) {
+        this.setState({
+            shoppingCart: this.state.shoppingCart.filter(item => item.id !== cartItem.id)
+        });
+    }
+
     render() {
-        const cart = this.state.shoppingCart;
         return (
             <div>
                 <ToastContainer
@@ -54,10 +60,10 @@ class MainComponent extends Component {
                     pauseOnHover={false}
                     theme='dark'
                 />
-                <Header cart={cart}/>
+                <Header cart={this.state.shoppingCart} updateCart={this.updateCart}/>
                 <JumbotronComponent pcPics={PCPICS} />
                 <FindParts />
-                <BuildPc pcBuilds={PCBUILDS} cart={cart} onCartChange={this.handleCartChange} />
+                <BuildPc pcBuilds={PCBUILDS} cart={this.state.shoppingCart} onCartChange={this.handleCartChange} />
                 <NeedAdvice />
                 <ContactUs />
                 <Footer />

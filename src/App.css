@@ -44,6 +44,10 @@ hr {
     border-radius: 25px;
 }
 
+.removeFromCartButton:hover {
+    color:rgb(61, 0, 0);
+}
+
 #carousel {
     width: 100%;
     max-width:600px;

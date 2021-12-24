@@ -20,6 +20,7 @@ class Header extends Component {
             isModalOpen: !this.state.isModalOpen
         });
     }
+    
 
     render() {
         let totalCost = 0;
@@ -27,7 +28,7 @@ class Header extends Component {
         const cart = this.props.cart.map(item => {
             totalCost += Math.ceil(item.totalCost * 100) / 100;;
             return (
-                <Row key={item.id} className="d-flex flex-row mb-2">
+                <Row key={item.id} id={item.id} className="d-flex flex-row mb-2">
                     <Col xs="3">
                         <img src={item.pic} alt={item.id} height="95px" width="95px" />
                     </Col>
@@ -40,7 +41,9 @@ class Header extends Component {
                         <strong>${item.totalCost}</strong>
                     </Col>
                     <Col xs="2" className="d-flex justify-content-center align-items-center">
-                        <FontAwesomeIcon icon={faTimes} color='red'/>
+                        <FontAwesomeIcon className="removeFromCartButton" icon={faTimes} color='red' style={{cursor: "pointer"}} onClick={() => {
+                            this.props.updateCart(item);
+                        }}/>
                     </Col>
                 </Row>
             )
