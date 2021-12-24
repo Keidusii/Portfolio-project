@@ -42,6 +42,16 @@ class MainComponent extends Component {
     updateCart(cartItem) {
         this.setState({
             shoppingCart: this.state.shoppingCart.filter(item => item.id !== cartItem.id)
+        }, () => {
+            toast.error(`Removed from Cart!`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
         });
     }
 
